@@ -5,21 +5,35 @@ import heightIcon from "../../../assets/svg/height-icon.svg";
 import { Pokemon } from "../../../core/domain/model/Pokemon";
 import { useState, useEffect } from "react";
 import { pokemonService } from "../../../core/service/pokemonService";
+import { Tag } from "./Tag/Tag";
+import { PokemonList } from "../../../core/domain/model/PokemonList";
 
 export const Card = () => {
   const [pokemon, setPokemon] = useState<Pokemon>();
+  const [allPokemon, setAllPokemon] = useState<PokemonList>();
 
   const getPokemon = async () => {
-    const pokemon = await pokemonService.getPokemon("");
+    const pokemon = await pokemonService.getPokemon("45");
     setPokemon(pokemon);
   };
+  
+  const getAllPokemon = async () => {
+    const allPokemon = await pokemonService.getAllPokemon(20, 20)
+    console.log("allPokemon", allPokemon)
+    setAllPokemon(allPokemon);
+  }
 
   useEffect(() => {
     getPokemon();
-  });
+    getAllPokemon();
+  }, []);
+
+  console.log("hola", allPokemon)
+
+  const mainType = pokemon?.types[0]
 
   return (
-    <div className="card__container">
+    <div className="card__container" style={{background: `var(--pokemon__type--${mainType})`}}>
       <section className="card__header">
         <h1>{pokemon?.name}</h1>
         <span>{pokemon?.index}</span>
@@ -30,10 +44,10 @@ export const Card = () => {
 
       <section className="card__info">
         <section className="card__type">
-          <h2>Fire</h2>
+          {pokemon?.types.map((type) => {
+           return <Tag style={{background: `var(--pokemon__type--${type})`}} type={type}/> })}
         </section>
-
-        <section className="card__about">
+        <section className="card__about" style={{color: `var(--pokemon__type--${mainType})`}}>
           <h2>About</h2>
         </section>
 
@@ -65,6 +79,12 @@ export const Card = () => {
           <p>xd</p>
         </section>
       </section>
+      {/* <div>
+        {allPokemon.map((pokemon) => {
+          return ()
+        })}
+      </div> */}
     </div>
+    
   );
 };

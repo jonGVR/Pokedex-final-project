@@ -7,7 +7,6 @@
   border-radius: 12px;
   position: relative;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  background-color: var(--pokemon__type--fire);
 }
 
 .card__header {
@@ -24,6 +23,7 @@
   line-height: var(--line-height-big);
   font-weight: var(--bold);
   color: var(--grayscale__white);
+  text-transform: capitalize;
 }
 
 .card__header span {
@@ -51,17 +51,6 @@
   gap: var(--mini);
 }
 
-.card__type__pill {
-  padding: 2px 8px;
-  font-size: var(--font-size-tiny);
-  font-weight: var(--bold);
-  line-height: var(--line-height-small);
-  background-color: var(--fire-color);
-  border-radius: 10px;
-  color: var(--grayscale__white);
-  text-transform: capitalize;
-}
-
 .card__about {
   font-size: var(--font-size-medium);
   font-weight: var(--bold);
@@ -73,8 +62,9 @@
   display: flex;
   gap: 24px;
 }
+
 .vertical-line {
-  border-left: 1px solid var(--light-gray);
+  border-left: 1px solid rgb(182, 182, 182);
   display: block;
   height: 48px;
 }
@@ -126,7 +116,7 @@
 .card__pokemon-img img {
   position: absolute;
   top: 64px;
-  left: 86px;
+  left: 76px;
   width: 150px;
   height: 150px;
 }
