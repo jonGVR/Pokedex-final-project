@@ -1,13 +1,6 @@
-import React from "react";
-import "./App.css";
-import { Card } from "./ui/components/PokeContainer/Card";
+import './ui/_styles/index'
+import { Home } from './ui/components/Home'
 
-const App = () => {
-  return (
-    <>
-      <Card />
-    </>
-  );
-};
+const App = () => <Home />
 
-export default App;
+export default App

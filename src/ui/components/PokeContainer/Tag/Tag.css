@@ -1,8 +1,9 @@
 .card__type-styles {
-    padding: 2px 8px;
-    font-size: var(--font-size-tiny);
-    font-weight: var(--bold);
-    line-height: var(--line-height-small);
-    border-radius: 10px;
-    text-transform: capitalize;
-  }
+  padding: 2px 8px;
+  font-size: var(--font-size-tiny);
+  font-weight: var(--bold);
+  line-height: var(--line-height-small);
+  border-radius: 10px;
+  color: var(--grayscale__white);
+  text-transform: capitalize;
+}

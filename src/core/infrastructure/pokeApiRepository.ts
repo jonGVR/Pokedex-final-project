@@ -1,30 +1,38 @@
-import { Pokemon } from "../domain/model/Pokemon";
-import { PokemonList } from "../domain/model/PokemonList";
-import { pokeApiMapper } from "./pokeApiMapper";
-// import { PokemonListDTO } from "./pokeListApiDTO";
+import { Pokemon } from '../domain/model/Pokemon'
+import { PokemonDTO, PokemonListDTO } from './pokeApiDTO'
+import { pokeApiMapper } from './pokeApiMapper'
 
-const BASE_URL = "https://pokeapi.co/api/v2";
+const BASE_URL = 'https://pokeapi.co/api/v2'
 
-const getPokemon = async (identifier: string): Promise<Pokemon> => {
-  const pokemonUrl = `${BASE_URL}/pokemon/${identifier}`;
-  const response = await fetch(pokemonUrl);
-  const jsonResponse = await response.json();
+const getPokemonWithDetails = async (identifier: string): Promise<Pokemon> => {
+  const pokemonUrl = `${BASE_URL}/pokemon/${identifier}`
+  const response = await fetch(pokemonUrl)
+  const pokemonDTO: PokemonDTO = await response.json()
 
-  return pokeApiMapper.mapData(jsonResponse);
-};
+  return pokeApiMapper.mapData(pokemonDTO)
+}
 
-const getAllPokemon = async (offset: number, limit: number): Promise<PokemonList> => {
-  const allPokemonsUrl =  `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
-  const response = await fetch(allPokemonsUrl);
-  const jsonResponse = await response.json();
-  console.log("jsonResponse", jsonResponse)
-  console.log("results",jsonResponse.results)
-  console.log("mapperrrrrr", pokeApiMapper.mapList(jsonResponse.results))
+// esto es necesario porque la pokeapi es una mierda
 
-  return pokeApiMapper.mapList(jsonResponse)
+const getPokemonsMetadata = async (offset: number, limit: number): Promise<PokemonListDTO[]> => {
+  const allPokemonsUrl = `${BASE_URL}/pokemon/?offset=${offset}&limit=${limit}`
+  const response = await fetch(allPokemonsUrl)
+  const { results } = await response.json()
+  console.log(results)
+
+  return results
+}
+
+const getPokemonsWithDetails = async (offset: number, limit: number): Promise<Pokemon[]> => {
+  const pokemonsMetadata = await getPokemonsMetadata(offset, limit)
+  const detailsRequests = pokemonsMetadata.map((pokemon: PokemonListDTO) => getPokemonWithDetails(pokemon.name))
+  const pokemonsWithDetails = await Promise.all(detailsRequests)
+  console.log('xd', detailsRequests)
+  console.log('details', pokemonsWithDetails)
+  return pokemonsWithDetails
 }
 
 export const pokeApiRespository = {
-  getPokemon,
-  getAllPokemon
+  getPokemon: getPokemonWithDetails,
+  getPokemons: getPokemonsWithDetails
 }
