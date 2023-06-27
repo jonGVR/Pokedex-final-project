@@ -79,13 +79,15 @@
 
 .card__size-pokemon {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 24px;
 }
 
 .vertical-line {
   border-left: 1px solid rgb(182, 182, 182);
   display: block;
-  height: 48px;
+  height: 100%;
 }
 
 .card__measure {
@@ -99,6 +101,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.height-icon {
+  padding-left: 6px;
 }
 
 .card__measure-values span {

@@ -18,7 +18,6 @@ const getPokemonsMetadata = async (offset: number, limit: number): Promise<Pokem
   const allPokemonsUrl = `${BASE_URL}/pokemon/?offset=${offset}&limit=${limit}`
   const response = await fetch(allPokemonsUrl)
   const { results } = await response.json()
-  console.log(results)
 
   return results
 }
@@ -27,8 +26,6 @@ const getPokemonsWithDetails = async (offset: number, limit: number): Promise<Po
   const pokemonsMetadata = await getPokemonsMetadata(offset, limit)
   const detailsRequests = pokemonsMetadata.map((pokemon: PokemonListDTO) => getPokemonWithDetails(pokemon.name))
   const pokemonsWithDetails = await Promise.all(detailsRequests)
-  console.log('xd', detailsRequests)
-  console.log('details', pokemonsWithDetails)
   return pokemonsWithDetails
 }
 

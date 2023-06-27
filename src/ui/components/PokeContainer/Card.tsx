@@ -24,9 +24,9 @@ export const Card = ({ pokemon }: Props) => {
       </section>
 
       <section className="card__info">
-        <section className="card__type">
+        <section className="card__type" key={pokemon.index}>
           {pokemon.types.map(type => {
-            return <Tag style={{ background: `var(--pokemon__type--${type})` }} type={type} />
+            return <Tag key={type} style={{ background: `var(--pokemon__type--${type})` }} type={type} />
           })}
         </section>
         <section className="card__about" style={{ color: `var(--pokemon__type--${mainType})` }}>
@@ -37,7 +37,7 @@ export const Card = ({ pokemon }: Props) => {
           <section className="card__measure">
             <div className="card__measure-values">
               <img src={weightIcon} alt="weight-icon" />
-              <span>{pokemon.weight} kg</span>
+              <span>{pokemon.weight / 10} kg</span>
             </div>
             <div className="card__measure-span">
               <span>Weight</span>
@@ -47,9 +47,9 @@ export const Card = ({ pokemon }: Props) => {
           <span className="vertical-line"></span>
 
           <section className="card__measure">
-            <div className="card__measure-values">
+            <div className="card__measure-values height-icon">
               <img src={heightIcon} alt="height-icon" />
-              <span>{pokemon.height} m</span>
+              <span>{pokemon.height / 10} m</span>
             </div>
             <div className="card__measure-span">
               <span>Height</span>

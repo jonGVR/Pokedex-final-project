@@ -7,19 +7,13 @@ interface Props {
 }
 
 export const Searchbar = ({ query, setQuery }: Props) => {
-  // const isEnterKeyPressed = e => {
-  //   return e.keyCode === 13
-  // }
-
-  // const handleChange = e => {
-  //   if (isEnterKeyPressed) {
-  //     onSearch(e.target.value)
-  //   }
-  // }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value)
+  }
 
   return (
     <div className="searchbar-container">
-      <input className="searchbar" type="search" placeholder="Search a Pokemon" value={query} />
+      <input className="searchbar" type="search" placeholder="Search a Pokemon" value={query} onChange={handleChange} />
       <img className="searchbar-icon" src={searchIcon} alt="searchbar-icon" />
     </div>
   )
