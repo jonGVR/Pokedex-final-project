@@ -4,10 +4,16 @@
   height: 74px;
   border-bottom: 1px solid var(--light-gray);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  padding-left: 134px;
 }
 
-.header-logo {
-  margin-left: 134px;
+.header-btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
 }
 
 .header-title {

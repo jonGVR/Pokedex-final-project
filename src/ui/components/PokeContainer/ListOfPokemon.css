@@ -11,18 +11,35 @@
   gap: 28px;
 } */
 
-.null-search {
-  border: 1px solid red;
+.link-details {
+  color: inherit;
+  text-decoration: none;
 }
-/* Media query para dispositivos móviles */
+
+.noresult-container {
+  height: 70vh;
+  top: 40%;
+  transform: translateY(40%);
+}
+
+.noresult-text {
+  font-size: var(--font-size-big);
+}
+
 @media (max-width: 767px) {
   .pokedex-container {
     grid-template-columns: repeat(1, minmax(280px, 1fr));
     gap: 16px;
   }
+  .noresult-container {
+    /* border: 1px solid red; */
+    width: 250px;
+  }
+  .noresult-text {
+    font-size: var(--font-size-medium);
+  }
 }
 
-/* Media query para tablets */
 @media (min-width: 768px) and (max-width: 1023px) {
   .pokedex-container {
     grid-template-columns: repeat(2, minmax(280px, 1fr));

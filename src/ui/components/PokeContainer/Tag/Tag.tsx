@@ -1,5 +1,5 @@
 import '../Tag/Tag.css'
-import '../../../_styles/index'
+import '../../../styles/index'
 
 export const Tag = ({ type, style }: { type: string; style: React.CSSProperties }) => {
   return (

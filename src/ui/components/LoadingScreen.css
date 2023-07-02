@@ -3,3 +3,8 @@
   place-items: center;
   height: 100vh;
 }
+
+.loading-img {
+  width: 150px;
+  height: 150px;
+}

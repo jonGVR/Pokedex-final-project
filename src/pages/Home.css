@@ -4,14 +4,14 @@ body {
   background-color: #e5e5e5;
 }
 
-.container {
+.home-container {
   display: flex;
   flex-direction: column;
   width: 1200px;
   background-color: var(--grayscale__white);
 }
 
-.main-container {
+.home__main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@ body {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
 
-.footer-container {
+.home__footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
